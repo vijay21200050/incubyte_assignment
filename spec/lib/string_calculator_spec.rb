@@ -58,4 +58,9 @@ RSpec.describe StringCalculator do
     end
   end
 
+  context "Delimiters can be of any length" do
+    it "returns the sum" do
+      expect(calculator.add("//[***]\n1***2***3")).to eq(6)
+    end
+  end
 end
