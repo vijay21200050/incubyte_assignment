@@ -4,21 +4,22 @@ class StringCalculator
     return 0 if numbers.strip.empty?
 
     delimiter = ","
+    delimiters = [delimiter]
 
-    if numbers.start_with?('//')
-      match = numbers.match(%r{^//\[(.*?)\]\n(.*)})
+    if numbers.start_with?("//")
+      match = numbers.match(%r{^//(\[.*\])\n(.*)})
       if match
-        delimiter = match[1]
-        numbers = match[2]
+        delimiters = match[1].scan(/\[(.*?)\]/).flatten
+        numbers = match[2]  # Extract numbers part
       else
         match = numbers.match(%r{^//(.*?)\n(.*)})
-        delimiter = match[1] if match
+        delimiters = [match[1]] if match
         numbers = match[2] if match
       end
     end
 
-    numbers.gsub!("\n", delimiter)
-    num_array = numbers.split(delimiter).map(&:to_i)
+    numbers = delimiters.reduce(numbers) { |str, delim| str.gsub("\n", delim) }
+    num_array = numbers.split(Regexp.union(delimiters)).map(&:to_i)
     negatives = num_array.select(&:negative?)
     raise "negative numbers not allowed #{negatives.join(',')}" if negatives.any?
     num_array.reject! { |n| n > 1000 }
