@@ -10,7 +10,7 @@ class StringCalculator
       match = numbers.match(%r{^//(\[.*\])\n(.*)})
       if match
         delimiters = match[1].scan(/\[(.*?)\]/).flatten
-        numbers = match[2]  # Extract numbers part
+        numbers = match[2]
       else
         match = numbers.match(%r{^//(.*?)\n(.*)})
         delimiters = [match[1]] if match
