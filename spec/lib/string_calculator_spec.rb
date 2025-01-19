@@ -9,4 +9,11 @@ RSpec.describe StringCalculator do
       end
     end
   end
+
+  context "with one number" do
+    it "returns the number itself" do
+      expect(calculator.add("1")).to eq(1)
+    end
+  end
+
 end
