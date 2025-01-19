@@ -52,4 +52,10 @@ RSpec.describe StringCalculator do
     end
   end
 
+  context "ignoring number greater then 1000" do
+    it "returns the sum" do
+      expect(calculator.add("//;\n2;1001")).to eq(2)
+    end
+  end
+
 end
