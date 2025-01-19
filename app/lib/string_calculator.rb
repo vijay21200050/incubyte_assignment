@@ -9,6 +9,8 @@ class StringCalculator
 
     numbers.gsub!("\n", ',')
     num_array = numbers.split(',').map(&:to_i)
+    negatives = num_array.select(&:negative?)
+    raise "negative numbers not allowed #{negatives.join(',')}" if negatives.any?
     num_array.sum
   end
 
