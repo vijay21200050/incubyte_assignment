@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. bundle install #to install dependencies
+2. rspec spec/lib/string_calculator_spec.rb #running test cases
+3. string_calculator = StringCalculator.new
+4. string_calculator.add(param)
+5. The above 2 lines to test custom param
